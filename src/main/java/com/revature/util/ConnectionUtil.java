@@ -20,8 +20,10 @@ public class ConnectionUtil {
 			// Specify the driver for Tomcat
 			Class.forName("oracle.jdbc.OracleDriver");
 			
-
-			return DriverManager.getConnection(props.getProperty("jdbc.url"), props.getProperty("jdbc.username"), props.getProperty("jdbc.password"));
+			return DriverManager.getConnection(System.getenv(props.getProperty("jdbc.url")), 
+											   System.getenv(props.getProperty("jdbc.username")),
+											   System.getenv(props.getProperty("jdbc.password")));
+	//		return DriverManager.getConnection(props.getProperty("jdbc.url"), props.getProperty("jdbc.username"), props.getProperty("jdbc.password"));
 		} catch (IOException ioe) {
 			System.err.println(ioe.getMessage());
 		} catch (ClassNotFoundException cnfe) {
